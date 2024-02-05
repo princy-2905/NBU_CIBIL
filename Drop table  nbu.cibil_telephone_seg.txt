@@ -1,0 +1,16 @@
+Drop table  nbu.cibil_telephone_segment;
+create table  nbu.cibil_telephone_segment
+(
+memberreference varchar(max) ,
+tel_type varchar(max),
+inserted_at date,
+updated_at date )
+
+truncate table nbu.cibil_telephone_segment;
+insert into nbu.cibil_telephone_segment
+select
+cast(memberreference as int),
+cast ( tel_type as int ),
+ getdate(),getdate()
+from nbu.stg_cibil_data
+where tel_type is not null

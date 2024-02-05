@@ -1,0 +1,7 @@
+ALTER TABLE nbu.stg_cibil_data
+ADD COLUMN response_id VARCHAR(36);
+
+UPDATE nbu.stg_cibil_data
+SET response_id = md5(memberreference::text);
+
+select count(distinct response_id) from nbu.stg_cibil_data
